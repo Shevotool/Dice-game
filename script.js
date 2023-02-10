@@ -13,6 +13,12 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
+// Modal
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.close-modal');
+const btnRules = document.querySelector('.btn--rules');
+
 let scores, currentScore, activePlayer, playing;
 
 // Starting conditions
@@ -69,7 +75,7 @@ btnRoll.addEventListener('click', () => {
 
 btnHold.addEventListener('click', () => {
   if (playing) {
-    console.log('hold button');
+    // console.log('hold button');
     // 1. Add current score to active player's score
     scores[activePlayer] += currentScore;
     //scores[1] = scores[1] + currentScore;
@@ -95,3 +101,19 @@ btnHold.addEventListener('click', () => {
 });
 
 btnNew.addEventListener('click', init);
+
+const openModal = function () {
+  modal.classList.remove('modal-hidden');
+  overlay.classList.remove('modal-hidden');
+};
+
+const closeModal = function () {
+  overlay.classList.add('modal-hidden');
+  modal.classList.add('modal-hidden');
+};
+
+btnRules.addEventListener('click', openModal);
+
+overlay.addEventListener('click', closeModal);
+
+btnCloseModal.addEventListener('click', closeModal);
